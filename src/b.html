@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        /* body,
+        div {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            filter: alpha(opacity:30);
+            opacity: 0.3;
+        } */
+
+        body,
+        div {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid blue;
+            background-color: teal;
+            filter: alpha(opacity:30);
+            opacity: 0.3;
+        }
+    </style>
+    <script>
+        // window.onload = function () {
+        //     var oDiv = document.getElementById("div1");
+        //     oDiv.onmouseover = function () {
+        //         startMove(100);
+        //     }
+        //     oDiv.onmouseout = function () {
+        //         startMove(30);
+        //     }
+        // }
+        // var timer = null;
+        // var alpha = 30;
+        // function startMove(iTarget) {
+        //     clearInterval(timer);
+        //     var oDiv = document.getElementById("div1");
+        //     timer = setInterval(function () {
+        //         var speed = 0;
+        //         //判断透明度与所设的值不一致的情况
+        //         if (alpha < iTarget) {
+        //             speed = 10;
+        //         } else {
+        //             speed = -10;
+        //         }
+        //         //如果一致，就清除定时器，否则透明度发生相应的变化
+        //         if (alpha == iTarget) {
+        //             clearInterval(timer);
+        //         } else {
+        //             alpha += speed;
+        //             oDiv.style.filter = 'alpha(Opacity:' + alpha + ')';
+        //             oDiv.style.opacity = alpha / 100;
+        //         }
+        //     }, 30);
+
+        // }
+        window.onload = function () {
+            var oDiv = document.getElementById("div1");
+            oDiv.onmouseover = function () {
+                startMove(100);//移入的时候我将他的透明度变为1；
+            }
+            oDiv.onmouseout = function () {
+                startMove(30);//移出的时候我将他的透明度变为原来的0.3
+            }
+        }
+        var timer = null;
+        var alpha = 30;
+        function startMove(iTarget) {
+            clearInterval(timer);
+            var oDiv = document.getElementById("div1");
+            timer = setInterval(function () {
+                var speed = 0;
+                if (alpha > iTarget) {
+                    speed = -10;
+                } else {
+                    speed = 10;
+                }
+                if (alpha == iTarget) {
+                    clearInterval(timer);
+                } else {
+                    alpha += speed;
+                    oDiv.style.filter = "alpha(opacity:" + alpha + ")";
+                    oDiv.style.opacity = alpha / 100;
+                }
+
+            }, 30);
+
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <div id="div1"></div>
+</body>
+
+</html>
